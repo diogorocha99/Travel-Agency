@@ -1,0 +1,32 @@
+version: '3'
+services:
+  fli-users:
+    image: diogorocha999/fli-users
+    ports:
+      - 3000:3000
+
+  fli-rabbitmq:
+    image: diogorocha999/fli-rabbitmq
+    ports:
+      - 3005:3005
+
+  fli-flightservice:
+    image: diogorocha999/fli-flightservice
+    ports:
+      - 3010:3010
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  fli-frontend:
+    image: diogorocha999/fli-frontend
+    ports:
+      - 3050:3050
+
+volumes:
+  rabbitmq_data:
